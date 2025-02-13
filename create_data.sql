@@ -9,7 +9,7 @@ BEGIN
        AND table_name = 'student_test'
    ) THEN
        EXECUTE 'CREATE TABLE public.student_test (
-           test_id BIGSERIAL NOT NULL PRIMARY KEY,
+           test_id BIGSERIAL PRIMARY KEY,
            name VARCHAR(50) NOT NULL,
            surname VARCHAR(50) NOT NULL,
            gender VARCHAR(6) NOT NULL,
@@ -29,7 +29,7 @@ BEGIN
        AND table_name = 'faculty_test'
    ) THEN
        EXECUTE 'CREATE TABLE public.faculty_test (
-           faculty_id BIGSERIAL NOT NULL PRIMARY KEY,
+           faculty_id BIGSERIAL PRIMARY KEY,
            name VARCHAR(50) NOT NULL,
            abbreviation VARCHAR(10),
            code_number VARCHAR(10) NOT NULL,
@@ -47,7 +47,7 @@ BEGIN
        AND table_name = 'subject_test'
    ) THEN
        EXECUTE 'CREATE TABLE public.subject_test (
-           subject_id BIGSERIAL NOT NULL PRIMARY KEY,
+           subject_id BIGSERIAL PRIMARY KEY,
            name VARCHAR(50) NOT NULL,
            type VARCHAR(50) NOT NULL,
            classes_count INTEGER,
