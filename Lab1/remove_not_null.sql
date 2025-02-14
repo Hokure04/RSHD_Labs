@@ -2,13 +2,8 @@ DO $$
 DECLARE
     r RECORD;
     count_removed INTEGER := 0;
-    schema_name TEXT;
+    schema_name TEXT := 's368274';
 BEGIN
-    SELECT nspname INTO schema_name
-    FROM pg_namespace
-    WHERE nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
-    ORDER BY nspname
-    LIMIT 1;
 
     IF schema_name IS NULL THEN
         RAISE EXCEPTION 'Не удалось определить схему';
@@ -38,12 +33,3 @@ BEGIN
     RAISE NOTICE 'Схема: %', schema_name;
     RAISE NOTICE 'Ограничений целостности типа NOT NULL отключено: %', count_removed;
 END $$;
-
-INSERT INTO public.student_test(name, surname, gender, birthday, start_study_date, finish_study_date) VALUES
-(NULL, NULL, NULL, NULL, NULL, NULL);
-
-INSERT INTO public.faculty_test(name, abbreviation, code_number, available_places_count) VALUES
-(NULL, NULL, NULL, NULL);
-
-INSERT INTO public.subject_test(name, type, classes_count, status) VALUES
-(NULL, NULL, NULL, NULL);
