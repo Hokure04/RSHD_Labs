@@ -30,6 +30,5 @@ BEGIN
                 count_removed := count_removed + 1;
     END LOOP;
 
-    RAISE NOTICE 'Схема: %', schema_name;
-    RAISE NOTICE 'Ограничений целостности типа NOT NULL отключено: %', count_removed;
+    RAISE NOTICE 'RESULT|%|%', schema_name, count_removed;
 END $$;

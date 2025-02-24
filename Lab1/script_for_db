@@ -1,0 +1,18 @@
+#!/bin/bash
+
+DB_NAME="studs"
+HOST_NAME="pg"
+
+result=$(psql -h "$HOST_NAME" -d "$DB_NAME" -t -A -f remove_not_null.sql 2>&1 | grep 'RESULT')
+
+if [[ -z "$result" ]]; then
+    echo "Ошибка: не удалось получить результат из SQL-скрипта"
+    exit 1
+fi
+
+schema_name=$(echo "$result" | cut -d '|' -f 2 | xargs)
+count_removed=$(echo "$result" | cut -d '|' -f 3 | xargs)
+
+echo "схема: $schema_name"
+echo "количество убранных ограничений NOT NULL: $count_removed"
+
