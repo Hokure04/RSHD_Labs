@@ -2,8 +2,10 @@ DO $$
 DECLARE
     r RECORD;
     count_removed INTEGER := 0;
-    schema_name TEXT := 's368274';
+    schema_name TEXT;
 BEGIN
+
+    SELECT current_schema() INTO schema_name;
 
     IF schema_name IS NULL THEN
         RAISE EXCEPTION 'Не удалось определить схему';

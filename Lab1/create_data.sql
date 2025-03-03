@@ -2,10 +2,14 @@ CREATE OR REPLACE FUNCTION create_test_tables()
 RETURNS void
 LANGUAGE plpgsql AS
 $func$
+DECLARE
+    schema_name TEXT;
 BEGIN
+    SELECT current_schema() INTO schema_name;
+
    IF NOT EXISTS (
        SELECT 1 FROM information_schema.tables
-       WHERE table_schema = 's368274'
+       WHERE table_schema = schema_name
        AND table_name = 'student_test'
    ) THEN
        EXECUTE 'CREATE TABLE student_test (
@@ -25,7 +29,7 @@ BEGIN
 
    IF NOT EXISTS(
        SELECT 1 FROM information_schema.tables
-       WHERE table_schema = 's368274'
+       WHERE table_schema = schema_name
        AND table_name = 'faculty_test'
    ) THEN
        EXECUTE 'CREATE TABLE faculty_test (
@@ -43,7 +47,7 @@ BEGIN
 
    IF NOT EXISTS (
        SELECT 1 FROM information_schema.tables
-       WHERE table_schema = 's368274'
+       WHERE table_schema = schema_name
        AND table_name = 'subject_test'
    ) THEN
        EXECUTE 'CREATE TABLE subject_test (

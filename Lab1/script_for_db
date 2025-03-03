@@ -13,6 +13,6 @@ fi
 schema_name=$(echo "$result" | cut -d '|' -f 2 | xargs)
 count_removed=$(echo "$result" | cut -d '|' -f 3 | xargs)
 
-echo "схема: $schema_name"
-echo "количество убранных ограничений NOT NULL: $count_removed"
+echo "Схема: $schema_name"
+echo "Ограничений целостности типа NOT NULL отключено: $count_removed"
 
